@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<HTML>
+<HEAD>
+<TITLE>Crystal Collector</TITLE>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery.js"></script>
+</HEAD>
+
+<body>
+
+<div class="jumbotron">
+  <h1><center>Crystal Collector</center></h1>
+  <p><center>You will be given a random number at the beginning of the game. There are four crystals below. By clicking on a crystal you will add a specific amount to your total score. Win the game by matching your total score to the random number. The value of the crystal is added every time you click on it. Values change after each game.</center></p>
+  <div class="row">
+
+<div class="col-md-6">
+<center><h3>Wins: <span id="wins">0</span></h3></center>
+</div>
+
+<div class="col-md-6">
+<center><h3>Losses: <span id="losses">0</span></h3></center>
+</div>
+
+</div>
+  </div>
+
+<div class="container">
+
+  <div class="row">
+
+<div class="col-md-6 random-number">
+	<div class="row">
+	<center><h2>Match this Number</h2></center>
+	</div>
+	<div class="row">
+		<center><h3 id="random-number">0</h3></center>
+	</div>
+</div>
+
+<div class="col-md-6 your-number">
+	<div class="row">
+	<center><h2>Your Number</h2></center>
+	</div>
+	<div class="row">
+		<center><h3 id="your-number">0</h3></center>
+	</div>
+</div>
+
+
+</div>
+
+<div class="row">
+
+<div class="col-md-3"> <img style="width: 100%;" id="red-crystal" src="assets/images/red-crystal.png">
+
+</div>
+
+<div class="col-md-3"> <img style="width: 100%;" id="yellow-crystal" src="assets/images/yellow-crystal.png">
+</div>
+
+<div class="col-md-3"> <img style="width: 100%;" id="green-crystal" src="assets/images/green-crystal.png">
+</div>
+
+<div class="col-md-3"><img style="width: 100%;" id="blue-crystal" src="assets/images/blue-crystal.png">
+</div>
+
+</div>
+
+
+</div>
+
+
+</body>
+
+<script type=text/javascript>
+
+$(document).ready(function() {
+
+//variables
+var win = 0;
+var lose = 0;
+var randomNumber = Math.floor(Math.random() * 101) + 19;
+
+var yourNumber = 0;
+
+var redCrystal = Math.ceil(Math.random() * 12);
+var greenCrystal = Math.ceil(Math.random() * 12);
+var yellowCrystal = Math.ceil(Math.random() * 12);
+var blueCrystal = Math.ceil(Math.random() * 12);
+
+
+
+
+
+//logic
+
+//have a random number, show this in the HTML
+
+$("#random-number").html(randomNumber);
+
+
+//On click of crystal, trigger the addition of the crystal to yourNumber. Console log yourNumber and update the HTML of yourNumber
+
+
+$("#red-crystal").on("click", function() {
+	yourNumber += redCrystal;
+	console.log(yourNumber);
+	$("#your-number").html(yourNumber);
+	checkforwin();
+
+});
+
+$("#green-crystal").on("click", function() {
+	yourNumber += greenCrystal;
+	console.log(yourNumber);
+	$("#your-number").html(yourNumber);
+	checkforwin();
+
+});
+
+$("#yellow-crystal").on("click", function() {
+	yourNumber += yellowCrystal;
+	console.log(yourNumber);
+	$("#your-number").html(yourNumber);
+	checkforwin();
+
+});
+
+$("#blue-crystal").on("click", function() {
+	yourNumber += blueCrystal;
+	console.log(yourNumber);
+	$("#your-number").html(yourNumber);
+	checkforwin();
+
+
+});
+
+
+
+function checkforwin () {
+console.log(yourNumber + "your number");
+
+
+//If else statements - If yourNumber==randomNumber, add one to win, start game over. 
+//If your number >random number, add one to lose, start game over. 
+
+if (yourNumber === randomNumber) {
+	win++;
+	$("#wins").html(win);
+	console.log(win);
+
+}
+
+else if (yourNumber > randomNumber) {
+	lose++;
+	$("#losses").html(lose);
+	console.log(lose);
+}
+
+};
+
+function resetGame () {
+redCrystal = Math.ceil(Math.random() * 12);
+greenCrystal = Math.ceil(Math.random() * 12);
+yellowCrystal = Math.ceil(Math.random() * 12);
+blueCrystal = Math.ceil(Math.random() * 12);
+var randomNumber = Math.floor(Math.random() * 101) + 19;
+}
+//reset the game...
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+</HTML>
